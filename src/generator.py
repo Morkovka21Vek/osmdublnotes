@@ -4,7 +4,6 @@ import os
 import json
 
 record = struct.Struct("<IiiBI")
-count = os.path.getsize("notes.bin") // record.size
 
 notes = {}
 
