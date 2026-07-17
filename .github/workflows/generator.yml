@@ -1,0 +1,35 @@
+name: Download OSM Notes
+
+on:
+  workflow_dispatch:
+
+jobs:
+  download:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Download OSM notes dump
+        run: |
+          curl -L --fail \
+            -o planet-notes-latest.osn.bz2 \
+            https://planet.openstreetmap.org/notes/planet-notes-latest.osn.bz2
+
+      - name: Extract
+        run: |
+          bunzip2 planet-notes-latest.osn.bz2
+
+      - name: Check size
+        run: ls -h planet-notes-latest.osn
+
+      - name: Run parser
+        run: python3 src/parser.py
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: osm-notes.bin
+          path: notes.bin
+          retention-days: 7
