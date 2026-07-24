@@ -48,8 +48,8 @@ for pos, notes in data.items():
 
 
 for code, notes in result.items():
-    out = Path(f"countries/{code}")
-    out.mkdir(parents=True, exist_ok=True)
+    out = Path(f"{code}")
+    out.mkdir(exist_ok=True)
 
     with open(f"{out}/index.md", "w", encoding="utf-8") as file:
         s = f"""
