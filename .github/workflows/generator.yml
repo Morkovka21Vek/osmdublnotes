@@ -108,7 +108,7 @@ jobs:
             pandoc "$f" \
                 -s \
                 --metadata title="$title" \
-                -c /style.css \
+                -c style.css \
                 -o "${f%.md}.html"
           done
 

@@ -52,10 +52,7 @@ for code, notes in result.items():
     out.mkdir(exist_ok=True)
 
     with open(f"{out}/index.md", "w", encoding="utf-8") as file:
-        s = f"""
-# {code}
-[home](../)
-
+        s = """
 | Closed | Opened |
 | --- | --- |
 """
@@ -68,8 +65,6 @@ for code, notes in result.items():
 with open(f"index.md", "w", encoding="utf-8") as file:
     countries = [f"[{code}](./{code})" for code, notes in result.items()]
     s = f"""
-# OSM Notes Duplicates
-
 > A list of potential duplicate OpenStreetMap notes. Each entry contains both open and closed notes created at the same coordinates.
 
 {" ".join(countries)}
