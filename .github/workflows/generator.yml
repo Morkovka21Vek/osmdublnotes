@@ -99,9 +99,14 @@ jobs:
           find . -name '*.md' | while read f; do
             pandoc "$f" \
                 -s \
+                --metadata title="$(basename "${f%.md}")" \
                 -c /style.css \
                 -o "${f%.md}.html"
           done
+
+      - name: Tree
+        run: tree
+
       - name: Setup Pages
         uses: actions/configure-pages@v6.0.0
 
